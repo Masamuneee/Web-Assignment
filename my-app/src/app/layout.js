@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { NextUIProvider } from "@nextui-org/react";
 import NavBar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -14,9 +15,10 @@ export default function RootLayout({ children }) {
       <body className={plusJakartaSans.className}>
         <NextUIProvider>
           <NavBar />
-          <main className="">
+          <main className="bg-gray-100">
             {children}
           </main>
+          <Footer />
         </NextUIProvider>
       </body>
     </html>

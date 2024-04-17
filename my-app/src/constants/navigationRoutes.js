@@ -1,3 +1,3 @@
 export const ROUTES = {
-  navigationRoutes: ["about", "products", "news", "contact"]
+  navigationRoutes: ["about", "shop", "news", "contact"]
 }
