@@ -11,7 +11,9 @@ export default function NavBar() {
     <div className="w-full h-[3rem] bg-green-400">
       <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center">
         <div>
-          <h1>Shopify!</h1>
+          <Link href="/">
+            <h1>Shopify!</h1>
+          </Link>
         </div>
         <div className="h-full bg-inherit">
           {ROUTES.navigationRoutes.map((route) => (
@@ -20,9 +22,9 @@ export default function NavBar() {
               radius="none"
               className="bg-inherit h-full hover:bg-green-500"
             >
-              {/* <Link href={`/${route}`}> */}
-              {route.charAt(0).toUpperCase() + route.slice(1)}
-              {/* </Link> */}
+              <Link href={`/${route}`}>
+                {route.charAt(0).toUpperCase() + route.slice(1)}
+              </Link>
             </Button>
           ))}
         </div>
@@ -31,11 +33,11 @@ export default function NavBar() {
             radius="full"
             color="primary"
             size="sm"
-            // className="bg-inherit"
+            className="bg-inherit"
           >
-            {/* <Link href="/login"> */}
+            <Link href="/signin">
               Sign in
-            {/* </Link> */}
+            </Link>
           </Button>
         </div>
       </div>
