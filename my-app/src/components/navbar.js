@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function NavBar() {
   const pathName = usePathname();
   return (
-    <div className="w-full h-[3rem] bg-green-400">
+    <div className="w-full h-[3rem] bg-[#F2F2F0]">
       <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center">
         <div>
           <Link href="/">

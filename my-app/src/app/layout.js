@@ -1,9 +1,11 @@
 'use client'
 
-import { Plus_Jakarta_Sans } from "next/font/google";
-import "./globals.css";
-
 import { NextUIProvider } from "@nextui-org/react";
+import { Plus_Jakarta_Sans } from "next/font/google";
+
+import "./globals.css";
+import 'primeicons/primeicons.css';
+
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 

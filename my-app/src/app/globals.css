@@ -38,7 +38,8 @@ body {
 
 .container {
   position: relative;
-  overflow: hidden;;
+  overflow: hidden;
+  ;
 }
 
 .image {
@@ -60,7 +61,7 @@ body {
 
 .container:hover .image {
   opacity: 0.13;
-  transform:scale(1.1);
+  transform: scale(1.1);
 }
 
 .container:hover .middle {
@@ -75,4 +76,16 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.log-in {
+  background-image: url('https://static.vecteezy.com/system/resources/previews/007/935/202/non_2x/seamless-pattern-background-for-theme-music-vector.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.log-in-wrapper {
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  backdrop-filter: blur(50px) saturate(200%);
+  background-color: rgba(255, 255, 255, .5);
 }

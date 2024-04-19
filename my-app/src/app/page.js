@@ -9,19 +9,8 @@ import { ALBUM_FAV } from "@/constants/albumList";
 export default function Home() {
   return (
     <div className="">
-      <div className="w-full h-[calc(100vh-3rem)] bg-[url(/taylor_swift-ttpd.jpg)] bg-center bg-cover">
-        <div className="flex flex-col items-center absolute inset-x-0 bottom-10">
-          <div className="mb-5">
-            <h1 className="text-5xl text-white font-bold text-center mb-1">
-              THE TORTURED POETS DEPARTMENT
-            </h1>
-            <p className="text-white text-center text-[24px]">A brand new album by Taylor Swift</p>
-          </div>
-          <div className="flex flex-row gap-3">
-            <Button color="default" radius="full">Learn more</Button>
-            <Button color="default" variant="ghost" radius="full" className="text-white hover:text-black">Order</Button>
-          </div>
-        </div>
+      <div className="w-full">
+        <img src="taylor_swift-ttpd_banner.jpg" alt="hero" className="" />
       </div>
       <div className="bg-white py-12">
         <div className="section max-w-screen-xl mx-auto">
