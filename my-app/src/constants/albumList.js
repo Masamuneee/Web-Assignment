@@ -1,0 +1,92 @@
+export const ALBUM_FAV = {
+  newArrivals: [
+    {
+      id: 1,
+      title: "1989 (Taylor's Version)",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-1989TV.jpg'
+    },
+    {
+      id: 2,
+      title: "Speak Now (Taylor's Version)",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-speak_nowTV.jpg'
+    },
+    {
+      id: 3,
+      title: "Midnights",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-midnights.jpg'
+    },
+    {
+      id: 4,
+      title: "Red (Taylor's Version)",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-redTV.jpg'
+    },
+    {
+      id: 5,
+      title: "Fearless (Taylor's Version)",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-fearlessTV.jpg'
+    },
+  ],
+  customerPicks: [
+    {
+      id: 1,
+      title: "evermore",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-evermore.jpg'
+    },
+    {
+      id: 2,
+      title: "folklore",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-folklore.png'
+    },
+    {
+      id: 3,
+      title: "Lover",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-lover.jpg'
+    },
+    {
+      id: 4,
+      title: "reputation",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-reputation.png'
+    },
+    {
+      id: 5,
+      title: "Taylor Swift",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-debut.jpg'
+    },
+  ],
+  sales: [
+    {
+      id: 1,
+      title: "1989",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-1989.jpg'
+    },
+    {
+      id: 2,
+      title: "Red",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-red.jpg'
+    },
+    {
+      id: 3,
+      title: "Speak Now",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-speak_now.jpg'
+    },
+    {
+      id: 4,
+      title: "Fearless",
+      artist: 'Taylor Swift',
+      cover: 'taylor_swift-fearless.jpg'
+    },
+  ],
+}

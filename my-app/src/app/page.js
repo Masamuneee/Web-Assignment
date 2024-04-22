@@ -1,0 +1,62 @@
+'use client'
+
+import { Button } from "@nextui-org/react";
+import Image from "next/image";
+import ProductCard from "@/components/productCard";
+
+import { ALBUM_FAV } from "@/constants/albumList";
+
+export default function Home() {
+  return (
+    <div className="">
+      <div className="w-full">
+        <img src="taylor_swift-ttpd_banner.jpg" alt="hero" className="" />
+      </div>
+      <div className="bg-white py-12">
+        <div className="section max-w-screen-xl mx-auto">
+          <h1 className="section-header">New arrivals</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {ALBUM_FAV.newArrivals.map((album) => (
+              <ProductCard
+                key={album.id}
+                title={album.title}
+                artist={album.artist}
+                cover={album.cover}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="py-12">
+        <div className="section max-w-screen-xl mx-auto">
+          <h1 className="section-header">Customer picks</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {ALBUM_FAV.customerPicks.map((album) => (
+              <ProductCard
+                key={album.id}
+                title={album.title}
+                artist={album.artist}
+                cover={album.cover}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="bg-white py-12">
+        <div className="section max-w-screen-xl mx-auto">
+          <h1 className="section-header">Sales</h1>
+          <div className="grid grid-cols-4 gap-4">
+            {ALBUM_FAV.sales.map((album) => (
+              <ProductCard
+                key={album.id}
+                title={album.title}
+                artist={album.artist}
+                cover={album.cover}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
