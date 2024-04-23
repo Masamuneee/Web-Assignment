@@ -31,9 +31,9 @@ export default function NavBar() {
         <div>
           <Button
             radius="full"
-            color="primary"
             size="sm"
-            className="bg-inherit"
+            className="hover:bg-inherit"
+            variant="ghost"
           >
             <Link href="/signin">
               Sign in

@@ -10,7 +10,9 @@ export default function ProductCard({ title, artist, cover }) {
         <h1 className='text-2xl font-extrabold mb-1'>{title}</h1>
         <p>{artist}</p>
         <div className="flex flex-row gap-3 mt-3">
-          <Button size='sm' color="primary" radius="full">Learn more</Button>
+          <a href='/detail'>
+            <Button size='sm' color="primary" radius="full">Learn more</Button>
+          </a>
           <Button size='sm' color="primary" variant="ghost" radius="full">Order</Button>
         </div>
       </div>
