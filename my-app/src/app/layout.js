@@ -1,7 +1,7 @@
 'use client'
 
 import { NextUIProvider } from "@nextui-org/react";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Victor_Mono } from "next/font/google";
 
 import "./globals.css";
 import 'primeicons/primeicons.css';
@@ -9,7 +9,7 @@ import 'primeicons/primeicons.css';
 import NavBar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const plusJakartaSans = Victor_Mono({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={plusJakartaSans.className}>
         <NextUIProvider>
           <NavBar />
-          <main className="bg-gray-100">
+          <main className="min-h-screen">
             {children}
           </main>
           <Footer />
