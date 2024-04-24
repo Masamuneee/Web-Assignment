@@ -11,9 +11,8 @@ export default function ProductCard({ title, artist, cover }) {
         <p>{artist}</p>
         <div className="flex flex-row gap-3 mt-3">
           <a href='/detail'>
-            <Button size='sm' color="primary" radius="full">Learn more</Button>
+            <Button size='sm' variant='ghost' color="primary" radius="full">Learn more</Button>
           </a>
-          <Button size='sm' color="primary" variant="ghost" radius="full">Order</Button>
         </div>
       </div>
     </div>

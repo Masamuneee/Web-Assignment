@@ -30,6 +30,36 @@ export const ALBUM_FAV = {
       artist: 'Taylor Swift',
       cover: 'taylor_swift-fearlessTV.jpg'
     },
+    {
+      id: 6,
+      title: "Chúng Ta Đều Muốn Một Thứ",
+      artist: 'Cá Hồi Hoang',
+      cover: 'cch-ctdmmt.jpg'
+    },
+    {
+      id: 7,
+      title: "Ngày Ấy Và Sau Này",
+      artist: 'Cá Hồi Hoang',
+      cover: 'cch-navsn.png'
+    },
+    {
+      id: 8,
+      title: "Hiệu Ứng Trốn Chạy",
+      artist: 'Cá Hồi Hoang',
+      cover: 'cch-hutc.jpg'
+    },
+    {
+      id: 9,
+      title: "Gấp",
+      artist: 'Cá Hồi Hoang',
+      cover: 'cch-gap.jpg'
+    },
+    {
+      id: 10,
+      title: "Giấc.mơ.giấy",
+      artist: 'Cá Hồi Hoang',
+      cover: 'cch-giac_mo_giay.jpg'
+    },
   ],
   customerPicks: [
     {

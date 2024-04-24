@@ -146,8 +146,8 @@ export default function Detail() {
             <Button color="primary" radius="full" className="w-full">Add to cart</Button>
           </div>
           <div className="flex flex-col gap-1">
-            <h1 className="font-bold text-xl">Description</h1>
-            <p>
+            <h1 className="font-bold">Description</h1>
+            <p className="text-sm">
               1989 (Taylor's Version) is the fourth re-recorded album by the American singer-songwriter Taylor Swift. It is a re-recording of Swift's fifth studio album, 1989 (2014), and was released on October 27, 2023, by Republic Records. The album is part of Swift's ongoing response to a 2019 dispute regarding the masters of her back catalog. It was announced at the final Los Angeles show of the Eras Tour on August 9, 2023.
             </p>
           </div>

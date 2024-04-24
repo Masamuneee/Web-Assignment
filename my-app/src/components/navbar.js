@@ -8,32 +8,37 @@ import Link from "next/link";
 export default function NavBar() {
   const pathName = usePathname();
   return (
-    <div className="w-full h-[3rem] bg-[#F2F2F0]">
+    <div className="w-full h-full py-4">
       <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center">
         <div>
           <Link href="/">
-            <h1>Shopify!</h1>
+            <img
+              src="/logo/logo-fullAsset 1.svg"
+              alt="logo"
+              className="h-[7rem] cursor-pointer"
+            />
           </Link>
         </div>
-        <div className="h-full bg-inherit">
+        <div className="bg-inherit flex flex-row gap-3">
           {ROUTES.navigationRoutes.map((route) => (
-            <Button
-              key={route}
-              radius="none"
-              className="bg-inherit h-full hover:bg-green-500"
-            >
-              <Link href={`/${route}`}>
+            <Link href={`/${route}`}>
+              <Button
+                key={route}
+                radius="full"
+                size="lg"
+                className="bg-inherit text-[#353636] hover:text-white hover:bg-[#353636] font-bold"
+              >
                 {route.charAt(0).toUpperCase() + route.slice(1)}
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           ))}
         </div>
         <div>
           <Button
             radius="full"
-            size="sm"
-            className="hover:bg-inherit"
+            size="lg"
             variant="ghost"
+            className="hover:!bg-[#1C76C3] hover:!text-white border-[#1C76C3] text-[#1C76C3]"
           >
             <Link href="/signin">
               Sign in
