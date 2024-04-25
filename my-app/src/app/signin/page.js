@@ -34,18 +34,18 @@ export default function LoginPage() {
       <div className="bg-white log-in-wrapper shadow-2xl max-w-screen-xl px-10 pt-12 pb-10 w-full flex flex-col gap-10 rounded-[2.25rem]">
         <div>
           <Image
-            src="/logo.svg"
+            src="logo/logo-abbrvAsset 2.svg"
             alt="Vercel Logo"
             className="dark:invert"
-            width={60}
-            height={60}
+            width={100}
+            height={100}
             priority
           />
         </div>
         <div className="flex flex-row">
           <div className="w-1/2">
             <h1 className="text-5xl">Sign in</h1>
-            <p className="mt-4">to continue to Shopify!</p>
+            <p className="mt-4">to continue to The Amazing Record Store.</p>
           </div>
           <div className="w-1/2 flex flex-col gap-4">
             <div className="flex flex-col gap-4">

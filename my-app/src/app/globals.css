@@ -89,3 +89,7 @@ body {
   backdrop-filter: blur(50px) saturate(200%);
   background-color: rgba(255, 255, 255, .5);
 }
+
+.news-wrapper:hover>.news-image-container>.news-image {
+  transform: scale(1.025);
+}

@@ -4,7 +4,8 @@ export default function AboutUs() {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto flex flex-col gap-6">
-        <div className="w-1/2 mx-auto flex flex-col gap-8">
+      <h1 className="text-5xl text-center font-bold">ABOUT US</h1>
+        <div className="w-1/2 mx-auto flex flex-col gap-8 mt-10">
           <img src="/logo/logo-abbrvAsset 2.svg" alt="logo" className="animate-spin mb-10" />
           <p className="text-center">
             <span className="font-black">The Amazing Record Store</span> is dedicated to discovering and promoting exceptional artists, creating impactful music, and delivering highest-quality experiences to music fans. We aim to bring together a diverse community of music lovers and foster a culture of creativity, collaboration, and innovation. Our mission is to elevate the art of music and provide our artists with the tools, resources, and support they need to reach their full potential.
