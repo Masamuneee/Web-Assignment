@@ -45,7 +45,7 @@ export default function LoginPage() {
         <div className="flex flex-row">
           <div className="w-1/2">
             <h1 className="text-5xl">Sign in</h1>
-            <p className="mt-4">to continue to The Amazing Record Sto.</p>
+            <p className="mt-4">to continue to The Amazing Record Store.</p>
           </div>
           <div className="w-1/2 flex flex-col gap-4">
             <div className="flex flex-col gap-4">
