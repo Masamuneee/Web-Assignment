@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={plusJakartaSans.className}>
         <NextUIProvider>
           <NavBar />
-          <main className="min-h-screen">
+          <main className="">
             {children}
           </main>
           <Footer />
