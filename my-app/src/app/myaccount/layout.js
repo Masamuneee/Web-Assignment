@@ -54,6 +54,7 @@ export default function MyAccountPageLayout({ children }) {
               <ListboxSection title="My Review">
                 <ListboxItem
                   key="edit"
+                  href="/myaccount/review-history"
                   startContent={<i className="pi pi-comments"></i>}
                 >
                   Review History
@@ -61,7 +62,7 @@ export default function MyAccountPageLayout({ children }) {
               </ListboxSection>
             </Listbox>
           </div>
-          <div className="bg-white p-10">
+          <div className="bg-gray-50 rounded-2xl p-10">
             {children}
           </div>
         </div>

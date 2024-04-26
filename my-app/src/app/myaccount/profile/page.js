@@ -10,7 +10,6 @@ export default function Profile() {
     <div>
       <div>
         <h1 className="font-bold text-xl">My Profile</h1>
-        <p>Manage and protect your account</p>
       </div>
       <div className="grid grid-cols-[4fr_2fr] mt-10 gap-5">
         <form method="POST" className="flex flex-col gap-5">

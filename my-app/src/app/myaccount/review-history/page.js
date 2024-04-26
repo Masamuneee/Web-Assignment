@@ -1,13 +1,9 @@
-'use client'
-
-import PurchaseHistoryTable from "./table"
-
-export default function PurchaseHistoryPage() {
+export default function ReviewHistory() {
   return (
     <div>
       <h1 className="font-bold text-xl">Ongoing Order</h1>
       <div className="mt-10">
-        <PurchaseHistoryTable/>
+        Not yet implemented.
       </div>
     </div>
   )

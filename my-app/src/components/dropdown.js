@@ -21,12 +21,12 @@ export default function DropDown() {
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownItem key="profile" className="h-14 gap-2">
             <p className="font-semibold">Signed in as</p>
-            <p className="font-semibold">zoey@example.com</p>
+            <p className="font-semibold">johndoe@example.com</p>
           </DropdownItem>
           <DropdownItem key="account" href="/myaccount/profile">
             My account
           </DropdownItem>
-          <DropdownItem key="settings">
+          <DropdownItem key="purchase" href="/myaccount/purchase/history">
             My purchase
           </DropdownItem>
           <DropdownItem key="logout" color="danger">

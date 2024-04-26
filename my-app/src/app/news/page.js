@@ -66,7 +66,7 @@ export default function NewsPage() {
           </div>
           <div className="bg-gray-100 rounded-2xl flex flex-col h-full overflow-hidden news-wrapper">
             <div className="news-image-container h-[250px] overflow-hidden">
-              <div className="news-image h-full transition-[0.1s] duration-[ease] bg-[url('https://www.billboard.com/wp-content/uploads/2024/04/Taylor-Swift-cr-Beth-Garrabrant-2024-The-Black-Dog-billboard-1548.jpg?w=942&h=623&crop=1')] bg-cover bg-center">
+              <div className="news-image h-full transition-[0.1s] duration-[ease] bg-[url('https://i.pinimg.com/originals/81/96/89/819689adf4a5ed128ed8247b421ece65.jpg')] bg-cover bg-center">
               </div>
             </div>
             <div className="p-8 flex flex-col grow shrink-0 basis-auto justify-between">
