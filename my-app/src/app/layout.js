@@ -16,11 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={plusJakartaSans.className}>
         <NextUIProvider>
-          <NavBar />
+          {/* <NavBar /> */}
           <main className="">
             {children}
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </NextUIProvider>
       </body>
     </html>
