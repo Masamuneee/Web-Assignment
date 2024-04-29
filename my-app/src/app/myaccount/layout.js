@@ -1,8 +1,5 @@
 'use client'
 
-import { Button } from "@nextui-org/react"
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { Link } from "@nextui-org/react";
 import { Listbox, ListboxItem, ListboxSection, cn } from "@nextui-org/react";
 
 export default function MyAccountPageLayout({ children }) {
