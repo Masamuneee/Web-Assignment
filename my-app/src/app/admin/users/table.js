@@ -108,7 +108,7 @@ export default function UsersTable() {
       isStriped
       isHeaderSticky
       classNames={{
-        wrapper: "!max-h-[calc(100vh-250px)]",
+        wrapper: "!max-h-[calc(100vh-320px)]",
       }}
       aria-label="Example table with custom cells"
       bottomContent={

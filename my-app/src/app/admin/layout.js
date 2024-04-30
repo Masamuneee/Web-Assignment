@@ -1,12 +1,12 @@
 'use client'
 
 import { Listbox, ListboxItem, ListboxSection, Button } from "@nextui-org/react";
-import DropDown from "@/components/dropdown-admin";
+import AdminNavbar from "@/components/adminNavbar";
 
 export default function AdminLayout({ children }) {
   return (
-    <div className="flex flex-row h-[100vh]">
-      <div className="fixed h-full bg-gray-100 w-[18%] p-4 flex flex-col gap-4">
+    <div className="flex flex-row">
+      <div className="h-[100vh] top-0 bg-gray-100 p-4 flex flex-col gap-4">
         <div>
           <img
             src="/logo/logo-fullAsset 1.svg"
@@ -102,8 +102,11 @@ export default function AdminLayout({ children }) {
           </ListboxSection>
         </Listbox>
       </div>
-      <div className="w-[82%] p-6 ml-auto mr-0">
-        {children}
+      <div className="w-full ml-auto mr-0">
+        <AdminNavbar />
+        <div className="p-6">
+          {children}
+        </div>
       </div>
     </div>
   );
