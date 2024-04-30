@@ -135,11 +135,11 @@ export default function Detail() {
           <p className="font-black text-2xl">$49.99</p>
           <div className="w-full flex flex-row items-center">
             <div className="flex flex-row items-center mr-6">
-              <Button onClick={decrement} isIconOnly color="primary" radius="full" className="mr-2 w-full">
+              <Button onClick={decrement} isDisabled={quantity==0?true:false} isIconOnly color="primary" radius="full" className="mr-2 w-full">
                 <span className="pi pi-minus"></span>
               </Button>
               <div>{quantity}</div>
-              <Button onClick={increment} isIconOnly color="primary" radius="full" className="ml-2">
+              <Button onClick={increment} isDisabled={quantity==20?true:false} isIconOnly color="primary" radius="full" className="ml-2">
                 <span className="pi pi-plus"></span>
               </Button>
             </div>
