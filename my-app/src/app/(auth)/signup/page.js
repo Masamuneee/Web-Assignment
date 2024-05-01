@@ -30,8 +30,8 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="log-in min-h-screen flex justify-center items-center">
-      <div className="bg-white log-in-wrapper shadow-2xl max-w-screen-xl px-10 pt-12 pb-10 w-full flex flex-col gap-10 rounded-[2.25rem]">
+    <main className="min-h-screen flex justify-center items-center bg-blue-50">
+      <div className="bg-white shadow-md max-w-screen-xl px-10 pt-12 pb-10 w-full flex flex-col gap-10 rounded-[2.25rem]">
         <div>
           <Image
             src="logo/logo-abbrvAsset 2.svg"
@@ -44,18 +44,27 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-row">
           <div className="w-1/2">
-            <h1 className="text-5xl">Sign in</h1>
-            <p className="mt-4">to continue to The Amazing Record Store.</p>
+            <h1 className="text-5xl">Sign up</h1>
+            <p className="mt-4">to continue to The Amazing Record Store</p>
           </div>
           <div className="w-1/2 flex flex-col gap-4">
-            <div className="flex flex-col gap-4">
-              <Input size="lg" type="email" label="Email or phone" />
-              <Input size="lg" type="password" label="Password" />
-            </div>
+            <form className="flex flex-col gap-4">
+              <div className='flex flex-row gap-4'>
+                <Input type="text" name='fName' label="First name" />
+                <Input type="text" name='lName' label="Last name" />
+              </div>
+              <div className='flex flex-row gap-4'>
+                <Input type="email" name='email' label="Email" />
+                <Input type="text" name='phone' label="Phone number" />
+              </div>
+              <Input type="date" name='username' label="Date of Birth" />
+              <Input type="text" name='username' label="Username" />
+              <Input type="password" name='password' label="Password" />
+            </form>
             <div className="flex flex-row ml-auto">
               <Link href="/">
-                <Button radius="full" color="primary" size="lg">
-                  Sign in
+                <Button radius="full" color="primary">
+                  Sign up
                 </Button>
               </Link>
             </div>

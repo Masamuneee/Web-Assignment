@@ -23,10 +23,10 @@ export default function DropDown() {
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">johndoe@example.com</p>
           </DropdownItem>
-          <DropdownItem key="account" href="/myaccount/profile">
+          <DropdownItem key="account" href="/profile">
             My account
           </DropdownItem>
-          <DropdownItem key="purchase" href="/myaccount/purchase/history">
+          <DropdownItem key="purchase" href="/purchase/history">
             My purchase
           </DropdownItem>
           <DropdownItem key="logout" color="danger">

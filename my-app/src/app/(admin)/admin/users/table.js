@@ -1,7 +1,9 @@
 'use client'
 
 import React from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Checkbox, Link } from "@nextui-org/react";
+import { Radio, RadioGroup } from "@nextui-org/react";
 import { columns, users } from "@/constants/userDatabase";
 
 const statusColorMap = {
@@ -103,6 +105,8 @@ export default function UsersTable() {
     }
   })
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   return (
     <Table
       isStriped
@@ -140,11 +144,51 @@ export default function UsersTable() {
               className="max-w-[44%]"
             />
             <Button
+              onPress={onOpen}
               color="primary"
               endContent={<i className="pi pi-plus"></i>}
             >
               Add
             </Button>
+            <Modal
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              placement="top-center"
+              backdrop="blur"
+            >
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col">New User</ModalHeader>
+                    <ModalBody>
+                      <form method="POST" className="flex flex-col gap-2">
+                        <Input type="text" name="username" label="Username" />
+                        <div className="flex flex-row gap-2">
+                          <Input type="text" name="fName" label="First name" />
+                          <Input type="text" name="lName" label="Last name" />
+                        </div>
+                        <Input type="email" name="email" label="Email" />
+                        <Input type="text" name="name" label="Phone number" />
+                        <RadioGroup className="my-2" orientation="horizontal">
+                          <Radio value="male">Male</Radio>
+                          <Radio value="female">Female</Radio>
+                          <Radio value="others">Others</Radio>
+                        </RadioGroup>
+                        <Input type="date" name="birthday" label="Date of Birth" />
+                      </form>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="danger" variant="flat" onPress={onClose}>
+                        Cancel
+                      </Button>
+                      <Button color="primary" onPress={onClose}>
+                        Add
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </div>
           <Chip color="default" size="sm">Total {users.length} users</Chip>
         </div>

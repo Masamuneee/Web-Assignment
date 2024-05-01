@@ -12,20 +12,6 @@ import Footer from "@/components/footer";
 const plusJakartaSans = Victor_Mono({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-  let isAdmin = true;
-  if (isAdmin) {
-    return (
-      <html lang="en">
-        <body className={plusJakartaSans.className}>
-          <NextUIProvider>
-            <main className="">
-              {children}
-            </main>
-          </NextUIProvider>
-        </body>
-      </html>
-    );
-  }
   return (
     <html lang="en">
       <body className={plusJakartaSans.className}>

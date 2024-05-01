@@ -1,10 +1,24 @@
 'use client'
 
 import React from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button } from "@nextui-org/react";
 import { columns, articles, publishStatus } from "@/constants/articles";
 
-export default function PurchaseHistoryTable() {
+export default function ArticleTable() {
+  const [filterValue, setFilterValue] = React.useState("");
+  const hasSearchFilter = Boolean(filterValue);
+  const filteredItems = React.useMemo(() => {
+    let filteredArticles = [...articles];
+
+    if (hasSearchFilter) {
+      filteredArticles = filteredArticles.filter((article) =>
+        article.title.toLowerCase().includes(filterValue.toLowerCase())
+      );
+    }
+
+    return filteredArticles;
+  }, [articles, filterValue]);
+
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
 
@@ -14,8 +28,8 @@ export default function PurchaseHistoryTable() {
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
 
-    return articles.slice(start, end);
-  }, [page, articles]);
+    return filteredItems.slice(start, end);
+  }, [page, filteredItems]);
 
   const renderCell = React.useCallback((article, columnKey) => {
     const cellValue = article[columnKey];
@@ -51,12 +65,32 @@ export default function PurchaseHistoryTable() {
                 <i className="pi pi-eye"></i>
               </span>
             </Tooltip>
+            <Tooltip content="Edit">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                <i className="pi pi-pen-to-square"></i>
+              </span>
+            </Tooltip>
+            <Tooltip color="danger" content="Delete">
+              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                <i className="pi pi-trash"></i>
+              </span>
+            </Tooltip>
           </div>
         );
       default:
         return cellValue;
     }
   }, []);
+
+  const onSearchChange = React.useCallback((value) => {
+    if (value) {
+      setFilterValue(value);
+      setPage(1);
+    }
+    else {
+      setFilterValue("");
+    }
+  })
 
   return (
     <Table
@@ -75,6 +109,32 @@ export default function PurchaseHistoryTable() {
           />
         </div>
       }
+      bottomContentPlacement="outside"
+      topContent={
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-row justify-between items-center">
+            <Input
+              isClearable
+              type="text"
+              placeholder="Search by name..."
+              startContent={
+                <i className="pi pi-search"></i>
+              }
+              value={filterValue}
+              onValueChange={onSearchChange}
+              className="max-w-[44%]"
+            />
+            <Button
+              color="primary"
+              endContent={<i className="pi pi-plus"></i>}
+            >
+              Add
+            </Button>
+          </div>
+          {/* <Chip color="default" size="sm">Total {articles.length} users</Chip> */}
+        </div>
+      }
+      topContentPlacement="outside"
     >
       <TableHeader columns={columns}>
         {(column) => (

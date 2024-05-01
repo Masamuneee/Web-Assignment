@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function NavBar() {
   const pathName = usePathname();
-  let isLoggedIn = true;
+  let isLoggedIn = false;
   if (isLoggedIn) {
     return (
       <div className="w-full h-full py-4">
