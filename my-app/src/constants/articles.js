@@ -9,7 +9,7 @@ const publishStatus = {
 const columns = [
   { name: "ID", uid: "articleID" },
   { name: "TITLE", uid: "title" },
-  { name: "CATEGORY", uid: "category" },
+  // { name: "CATEGORY", uid: "category" },
   { name: "DATE_PUBLISHED", uid: "datePublished" },
   { name: "STATUS", uid: "status" },
   { name: "ACTIONS", uid: "actions" },

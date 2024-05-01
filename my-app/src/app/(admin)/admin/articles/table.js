@@ -2,35 +2,27 @@
 
 import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button } from "@nextui-org/react";
-import { columns, users } from "@/constants/userDatabase";
+import { columns, articles, publishStatus } from "@/constants/articles";
 
-const statusColorMap = {
-  processing: "secondary",
-  shipping: "primary",
-  completed: "success",
-  cancelled: "danger",
-  delayed: "warning",
-};
-
-export default function UsersTable() {
+export default function ArticleTable() {
   const [filterValue, setFilterValue] = React.useState("");
   const hasSearchFilter = Boolean(filterValue);
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredArticles = [...articles];
 
     if (hasSearchFilter) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+      filteredArticles = filteredArticles.filter((article) =>
+        article.title.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
 
-    return filteredUsers;
-  }, [users, filterValue]);
+    return filteredArticles;
+  }, [articles, filterValue]);
 
   const [page, setPage] = React.useState(1);
-  const rowsPerPage = 15;
+  const rowsPerPage = 10;
 
-  const pages = Math.ceil(users.length / rowsPerPage);
+  const pages = Math.ceil(articles.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -39,34 +31,31 @@ export default function UsersTable() {
     return filteredItems.slice(start, end);
   }, [page, filteredItems]);
 
-  const renderCell = React.useCallback((user, columnKey) => {
-    const cellValue = user[columnKey];
+  const renderCell = React.useCallback((article, columnKey) => {
+    const cellValue = article[columnKey];
 
     switch (columnKey) {
-      case "userID":
+      case "articleID":
         return (
-          <p>{user.userID}</p>
+          <p>{article.articleID}</p>
         );
-      case "name":
+      case "title":
         return (
-          <div className="flex flex-col">
-            <p>{user.name}</p>
-            <p className="text-xs">{user.gender}</p>
-          </div>
+          <p>{article.title}</p>
         );
-      case "email":
+      case "category":
         return (
-          <p>{user.email}</p>
+          <p>{article.category}</p>
         );
-      case "phone":
+      case "datePublished":
         return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{user.phone}</p>
-          </div>
+          <p>{article.datePublished}</p>
         );
-      case "username":
+      case "status":
         return (
-          <p>{user.username}</p>
+          <Chip className="capitalize" color={publishStatus[article.status]} size="sm" variant="flat">
+            {cellValue}
+          </Chip>
         );
       case "actions":
         return (
@@ -106,10 +95,6 @@ export default function UsersTable() {
   return (
     <Table
       isStriped
-      isHeaderSticky
-      classNames={{
-        wrapper: "!max-h-[calc(100vh-250px)]",
-      }}
       aria-label="Example table with custom cells"
       bottomContent={
         <div className="flex w-full justify-center">
@@ -146,7 +131,7 @@ export default function UsersTable() {
               Add
             </Button>
           </div>
-          <Chip color="default" size="sm">Total {users.length} users</Chip>
+          {/* <Chip color="default" size="sm">Total {articles.length} users</Chip> */}
         </div>
       }
       topContentPlacement="outside"
@@ -160,7 +145,7 @@ export default function UsersTable() {
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
-          <TableRow key={item.userID}>
+          <TableRow key={item.articleID}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
