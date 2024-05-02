@@ -24,7 +24,7 @@ export default function NavBar() {
           </div>
           <div className="bg-inherit flex flex-row gap-3">
             {ROUTES.navigationRoutes.map((route) => (
-              <Link href={`/${route}`}>
+              <Link key={route} href={`/${route}`}>
                 <Button
                   key={route}
                   radius="full"
@@ -56,7 +56,7 @@ export default function NavBar() {
           </div>
           <div className="bg-inherit flex flex-row gap-3">
             {ROUTES.navigationRoutes.map((route) => (
-              <Link href={`/${route}`}>
+              <Link key={route} href={`/${route}`}>
                 <Button
                   key={route}
                   radius="full"

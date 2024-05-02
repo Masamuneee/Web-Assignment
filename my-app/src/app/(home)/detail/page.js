@@ -126,7 +126,7 @@ export default function Detail() {
         </div>
         <div className="w-1/2 flex flex-col gap-5">
           <div className="flex flex-col gap-3">
-            <h1 className="text-4xl font-black">1989 (TAYLOR'S VERSION)</h1>
+            <h1 className="text-4xl font-black">1989 (TAYLORS VERSION)</h1>
             <div className="flex gap-2">
               <Chip size="sm" color="primary" variant="solid">Taylor Swift</Chip>
               <Chip size="sm" color="primary" variant="bordered">Pop</Chip>
