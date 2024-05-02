@@ -17,7 +17,7 @@ export default function ArticleTable() {
     }
 
     return filteredArticles;
-  }, [articles, filterValue]);
+  }, [articles, filterValue, hasSearchFilter]);
 
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 10;
