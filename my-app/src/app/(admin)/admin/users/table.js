@@ -21,10 +21,11 @@ export default function UsersTable() {
   const [lName, setLName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [phone, setPhone] = React.useState("");
-  const [birthday, setBirthday] = React.useState("");
+  const [birthdate, setBirthdate] = React.useState("");
   const [password, setPassword] = React.useState("");
   const router = useRouter();
 
+  // User data
   const [users, setUsers] = React.useState([]);
 
   React.useEffect(() => {
@@ -42,6 +43,14 @@ export default function UsersTable() {
 
     fetchUsers();
   }, []);
+
+  const [selectedUserDetails, setSelectedUserDetails] = React.useState(null);
+  const [detailsModalOpen, setDetailsModalOpen] = React.useState(false);
+  const fetchUserDetails = async (userId) => {
+    const response = await axios.get(`http://localhost/test/admin/detail.php?id=${userId}`);
+    setSelectedUserDetails(response.data);
+    setDetailsModalOpen(true);
+  };
 
 
   const [filterValue, setFilterValue] = React.useState("");
@@ -66,7 +75,7 @@ export default function UsersTable() {
       lName,
       email,
       phone,
-      birthday,
+      birthdate,
       username,
       password,
     });
@@ -124,10 +133,11 @@ export default function UsersTable() {
         return (
           <div className="relative flex items-center gap-2">
             <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={() => fetchUserDetails(user.userID)}>
                 <i className="pi pi-eye"></i>
               </span>
             </Tooltip>
+
             <Tooltip content="Edit">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <i className="pi pi-pen-to-square"></i>
@@ -158,6 +168,7 @@ export default function UsersTable() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
+    <>
     <Table
       isStriped
       isHeaderSticky
@@ -218,7 +229,7 @@ export default function UsersTable() {
                         </div>
                         <Input type="email" name="email" label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <Input type="text" name="phone" label="Phone number" value={phone} onChange={(e) => setPhone(e.target.value)} />
-                        <Input type="date" name="birthday" label="Date of Birth" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+                        <Input type="date" name="birthdate" label="Date of Birth" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
                         <Input type="text" name="username" label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         <Input type="password" name="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                       </ModalBody>
@@ -256,6 +267,31 @@ export default function UsersTable() {
         )}
       </TableBody>
     </Table>
+    <Modal isOpen={detailsModalOpen} onOpenChange={setDetailsModalOpen}>
+      <ModalContent>
+        <ModalHeader>User Details</ModalHeader>
+        <ModalBody>
+          {selectedUserDetails ? (
+            <div>
+              <p>ID: {selectedUserDetails.id}</p>
+              <p>Name: {selectedUserDetails.firstname} {selectedUserDetails.lastname}</p>
+              <p>Email: {selectedUserDetails.email}</p>
+              <p>Phone: {selectedUserDetails.phone}</p>
+              <p>Birthdate: {new Date(selectedUserDetails.birthdate).toLocaleDateString()}</p>
+              <p>Username: {selectedUserDetails.username}</p>
+              <p>Password: {selectedUserDetails.password}</p>
+              <p>Date Registered: {new Date(selectedUserDetails.created_at).toLocaleDateString()}</p>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button onPress={() => setDetailsModalOpen(false)}>Close</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+    </>
   );
 
 }
