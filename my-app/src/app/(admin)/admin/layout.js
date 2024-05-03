@@ -46,7 +46,7 @@ export default function AdminLayout({ children }) {
                 <ListboxSection title="Contents" showDivider>
                   <ListboxItem
                     key="edit"
-                    href="/admin/homepage"
+                    // href="/admin/homepage"
                     startContent={<i className="pi pi-home"></i>}
                   >
                     Homepage
@@ -74,7 +74,7 @@ export default function AdminLayout({ children }) {
                   </ListboxItem>
                   <ListboxItem
                     key="edit"
-                    // href="/myaccount/purchase/ongoing"
+                    href="/admin/products"
                     startContent={<i className="pi pi-database"></i>}
                   >
                     Product Database

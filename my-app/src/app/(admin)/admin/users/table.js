@@ -27,7 +27,7 @@ export default function UsersTable() {
     }
 
     return filteredUsers;
-  }, [users, filterValue]);
+  }, [users, filterValue, hasSearchFilter]);
 
   const [page, setPage] = React.useState(1);
   const rowsPerPage = 15;
@@ -45,31 +45,6 @@ export default function UsersTable() {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "userID":
-        return (
-          <p>{user.userID}</p>
-        );
-      case "name":
-        return (
-          <div className="flex flex-col">
-            <p>{user.name}</p>
-            <p className="text-xs">{user.gender}</p>
-          </div>
-        );
-      case "email":
-        return (
-          <p>{user.email}</p>
-        );
-      case "phone":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{user.phone}</p>
-          </div>
-        );
-      case "username":
-        return (
-          <p>{user.username}</p>
-        );
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
@@ -190,7 +165,7 @@ export default function UsersTable() {
               </ModalContent>
             </Modal>
           </div>
-          <Chip color="default" size="sm">Total {users.length} users</Chip>
+          <Chip color="default" size="sm">Total {filteredItems.length} users</Chip>
         </div>
       }
       topContentPlacement="outside"
