@@ -4,6 +4,13 @@ const statusColorMap = {
   "incoming": "warning",
 };
 
+const tags = {
+  newArrival: "New Arrival",
+  customerPick: "Customer Pick",
+  sale: "Sale",
+  none: "None",
+}
+
 let products = [
   {
     productID: 1,
@@ -72,6 +79,7 @@ let products = [
       }
     ],
     image: "taylor_swift-debut.jpg",
+    tag: tags.sale,
   },
   {
     productID: 2,
@@ -136,6 +144,7 @@ let products = [
       }
     ],
     image: "taylor_swift-fearless.jpg",
+    tag: tags.sale,
   }
   , {
     productID: 3,
@@ -204,6 +213,7 @@ let products = [
       }
     ],
     image: "taylor_swift-speak_now.jpg",
+    tag: tags.sale,
   },
   {
     productID: 4,
@@ -280,6 +290,7 @@ let products = [
       }
     ],
     image: "taylor_swift-red.jpg",
+    tag: tags.sale,
   },
   {
     productID: 5,
@@ -344,6 +355,7 @@ let products = [
       }
     ],
     image: "taylor_swift-1989.jpg",
+    tag: tags.sale,
   },
   {
     productID: 6,
@@ -416,6 +428,7 @@ let products = [
       }
     ],
     image: "taylor_swift-reputation.png",
+    tag: tags.customerPick,
   },
   {
     productID: 7,
@@ -500,6 +513,7 @@ let products = [
       }
     ],
     image: "taylor_swift-lover.jpg",
+    tag: tags.customerPick,
   },
   {
     productID: 8,
@@ -576,6 +590,7 @@ let products = [
       }
     ],
     image: "taylor_swift-folklore.png",
+    tag: tags.customerPick,
   },
   {
     productID: 9,
@@ -656,6 +671,7 @@ let products = [
       }
     ],
     image: "taylor_swift-evermore.jpg",
+    tag: tags.customerPick,
   },
   {
     productID: 10,
@@ -772,6 +788,7 @@ let products = [
       }
     ],
     image: "taylor_swift-fearlessTV.jpg",
+    tag: tags.customerPick,
   },
   {
     productID: 11,
@@ -904,6 +921,7 @@ let products = [
       },
     ],
     image: "taylor_swift-redTV.jpg",
+    tag: tags.newArrival,
   },
   {
     productID: 12,
@@ -968,6 +986,7 @@ let products = [
       },
     ],
     image: "taylor_swift-midnights.jpg",
+    tag: tags.newArrival,
   },
   {
     productID: 13,
@@ -1068,6 +1087,7 @@ let products = [
       }
     ],
     image: "taylor_swift-speak_nowTV.jpg",
+    tag: tags.newArrival,
   },
   {
     productID: 14,
@@ -1168,6 +1188,7 @@ let products = [
       }
     ],
     image: "taylor_swift-1989TV.jpg",
+    tag: tags.newArrival,
   },
   {
     productID: 15,
@@ -1188,6 +1209,7 @@ let products = [
       }
     ],
     image: "taylor_swift-ttpd.png",
+    tag: tags.newArrival,
   },
 ];
 
