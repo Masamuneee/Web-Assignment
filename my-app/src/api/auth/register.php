@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = $data['phone'];
     $birthdate = $data['birthday'];
     $username = $data['username'];
-    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+    $password = $data['password'];
 
     # Check firstname and lastname
     if (empty($firstname) || empty($lastname)) {

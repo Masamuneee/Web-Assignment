@@ -95,6 +95,24 @@ export default function UsersTable() {
     }
   }
 
+  const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
+  const [userToDelete, setUserToDelete] = React.useState(null);
+
+  // Add a new function to handle user deletion
+  async function handleDeleteUser() {
+    const response = await axios.get(`http://localhost/test/admin/deleteUser.php?id=${userToDelete.id}`);
+
+    if (response.data.status === 'success') {
+      alert('User deleted successfully');
+      setDeleteModalOpen(false);  // Close the modal
+      // Refresh the user data
+      const updatedUsers = users.filter(user => user.id !== userToDelete.id);
+      setUsers(updatedUsers);
+    } else {
+      alert(response.data.message);
+    }
+  }
+
   const [filterValue, setFilterValue] = React.useState("");
   const hasSearchFilter = Boolean(filterValue);
   const filteredItems = React.useMemo(() => {
@@ -199,7 +217,13 @@ export default function UsersTable() {
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+              <span
+                className="text-lg text-danger cursor-pointer active:opacity-50"
+                onClick={() => {
+                  setUserToDelete(user);
+                  setDeleteModalOpen(true);
+                }}
+              >
                 <i className="pi pi-trash"></i>
               </span>
             </Tooltip>
@@ -370,6 +394,36 @@ export default function UsersTable() {
               </Button>
             </ModalFooter>
           </form>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
+        <ModalContent>
+          <ModalHeader>Delete User</ModalHeader>
+          <ModalBody>
+            {userToDelete ? (
+              <div style={{ padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '10px' }}>
+                <h2 style={{ color: '#333', marginBottom: '20px' }}>Confirm Deletion</h2>
+                <p style={{ marginBottom: '10px' }}>Are you sure you want to delete the following user?</p>
+                <span style={{ color: 'red', marginBottom: '20px', display: 'block' }}>This action cannot be undone.</span>
+                <p><strong>ID:</strong> {userToDelete.id}</p>
+                <p><strong>Name:</strong> {userToDelete.firstname} {userToDelete.lastname}</p>
+                <p><strong>Email:</strong> {userToDelete.email}</p>
+                <p><strong>Phone:</strong> {userToDelete.phone}</p>
+                <p><strong>Username:</strong> {userToDelete.username}</p>
+              </div>
+            ) : (
+              <p>Loading...</p>
+            )}
+          </ModalBody>
+          <ModalFooter>
+            <Button color="danger" variant="flat" onPress={() => setDeleteModalOpen(false)}>
+              Cancel
+            </Button>
+            <Button color="danger" onPress={handleDeleteUser}>
+              Delete
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
 

@@ -16,7 +16,7 @@ function loadEnvironmentVariables($filePath)
 
 # Load environment variables
 # You need to change the path to the .env file according to your project
-loadEnvironmentVariables('../.env');
+loadEnvironmentVariables('.env');
 
 # Load environment variables
 $host = getenv('MYSQL_HOST');
