@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && $data['password'] === $user['password']) {
         echo json_encode(['status' => 'success']);
     } else {
         echo json_encode(['status' => 'Invalid username or password']);
