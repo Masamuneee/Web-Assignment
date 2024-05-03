@@ -1,11 +1,10 @@
 const columns = [
   { name: "ID", uid: "userID" },
   { name: "NAME", uid: "name" },
-  /* { name: "GENDER", uid: "gender" }, */
   { name: "EMAIL", uid: "email" },
   { name: "PHONE", uid: "phone" },
   { name: "USERNAME", uid: "username" },
-  { name: "DATE_REGISTERED", uid: "dateRegistered" },
+  { name: "DATE OF BIRTH", uid: "dateOfBirth" },
   { name: "ACTIONS", uid: "actions" },
 ]
 
@@ -17,6 +16,7 @@ const users = [
     email: "quangminh@gmail.com",
     phone: "0987654321",
     username: "quangminh",
+    dateOfBirth: "1999-01-01",
     dateRegistered: "2021-09-01",
   },
   {
@@ -26,6 +26,7 @@ const users = [
     email: "vana@gmail.com",
     phone: "0987654322",
     username: "vana",
+    dateOfBirth: "1999-01-02",
     dateRegistered: "2021-09-02",
   },
   {
@@ -35,6 +36,7 @@ const users = [
     email: "tranthib@gmail.com",
     phone: "0987654323",
     username: "tranthib",
+    dateOfBirth: "1999-01-03",
     dateRegistered: "2021-09-03",
   },
   {
@@ -44,6 +46,7 @@ const users = [
     email: "levanc@gmail.com",
     phone: "0987654324",
     username: "levanc",
+    dateOfBirth: "1999-01-04",
     dateRegistered: "2021-09-04",
   },
   {
@@ -53,6 +56,7 @@ const users = [
     email: "nguyenthid@gmail.com",
     phone: "0987654325",
     username: "nguyenthid",
+    dateOfBirth: "1999-01-05",
     dateRegistered: "2021-09-05",
   },
   {
@@ -62,6 +66,7 @@ const users = [
     email: "tranvane@gmail.com",
     phone: "0987654326",
     username: "tranvane",
+    dateOfBirth: "1999-01-06",
     dateRegistered: "2021-09-06",
   },
   {
@@ -71,6 +76,7 @@ const users = [
     email: "lethif@gmail.com",
     phone: "0987654327",
     username: "lethif",
+    dateOfBirth: "1999-01-07",
     dateRegistered: "2021-09-07",
   },
   {
@@ -80,6 +86,7 @@ const users = [
     email: "phamvang@gmail.com",
     phone: "0987654328",
     username: "phamvang",
+    dateOfBirth: "1999-01-08",
     dateRegistered: "2021-09-08",
   },
   {
@@ -89,6 +96,7 @@ const users = [
     email: "nguyenvanh@gmail.com",
     phone: "0987654329",
     username: "nguyenvanh",
+    dateOfBirth: "1999-01-09",
     dateRegistered: "2021-09-09",
   },
   {
@@ -98,6 +106,7 @@ const users = [
     email: "tranthii@gmail.com",
     phone: "0987654330",
     username: "tranthii",
+    dateOfBirth: "1999-01-10",
     dateRegistered: "2021-09-10",
   },
   {
@@ -107,6 +116,7 @@ const users = [
     email: "levanj@gmail.com",
     phone: "0987654331",
     username: "levanj",
+    dateOfBirth: "1999-01-11",
     dateRegistered: "2021-09-11",
   },
   {
@@ -116,6 +126,7 @@ const users = [
     email: "phamthik@gmail.com",
     phone: "0987654332",
     username: "phamthik",
+    dateOfBirth: "1999-01-12",
     dateRegistered: "2021-09-12",
   },
   {
@@ -125,6 +136,7 @@ const users = [
     email: "nguyenvanl@gmail.com",
     phone: "0987654333",
     username: "nguyenvanl",
+    dateOfBirth: "1999-01-13",
     dateRegistered: "2021-09-13",
   },
   {
@@ -134,6 +146,7 @@ const users = [
     email: "tranthim@gmail.com",
     phone: "0987654334",
     username: "tranthim",
+    dateOfBirth: "1999-01-14",
     dateRegistered: "2021-09-14",
   },
   {
@@ -143,6 +156,7 @@ const users = [
     email: "levann@gmail.com",
     phone: "0987654335",
     username: "levann",
+    dateOfBirth: "1999-01-15",
     dateRegistered: "2021-09-15",
   },
   {
@@ -152,6 +166,7 @@ const users = [
     email: "phamthio@gmail.com",
     phone: "0987654336",
     username: "phamthio",
+    dateOfBirth: "1999-01-16",
     dateRegistered: "2021-09-16",
   },
   {
@@ -161,6 +176,7 @@ const users = [
     email: "nguyenvanp@gmail.com",
     phone: "0987654337",
     username: "nguyenvanp",
+    dateOfBirth: "1999-01-17",
     dateRegistered: "2021-09-17",
   },
   {
@@ -170,6 +186,7 @@ const users = [
     email: "tranthiq@gmail.com",
     phone: "0987654338",
     username: "tranthiq",
+    dateOfBirth: "1999-01-18",
     dateRegistered: "2021-09-18",
   },
   {
@@ -179,6 +196,7 @@ const users = [
     email: "levanr@gmail.com",
     phone: "0987654339",
     username: "levanr",
+    dateOfBirth: "1999-01-19",
     dateRegistered: "2021-09-19",
   },
   {
@@ -188,6 +206,7 @@ const users = [
     email: "phamthis@gmail.com",
     phone: "0987654340",
     username: "phamthis",
+    dateOfBirth: "1999-01-20",
     dateRegistered: "2021-09-20",
   }
 ]
