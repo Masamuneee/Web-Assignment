@@ -20,7 +20,7 @@ export default function LoginPage() {
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const response = await axios.post('http://localhost/test/register.php', {
+    const response = await axios.post('http://localhost/test/auth/register.php', {
       fName,
       lName,
       email,
@@ -29,12 +29,15 @@ export default function LoginPage() {
       username,
       password,
     })
-
-    if (response.ok) {
-      router.push('/profile')
-    } else {
-      // Handle errors
+    
+    if (response.data.status === 'success') {
+      alert("Sign up successful");
+      router.push('/signin')
     }
+    else {
+      alert("Invalid input.");
+    }
+    
   }
 
   return (
@@ -69,11 +72,9 @@ export default function LoginPage() {
               <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} label="Username" />
               <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" />
               <div className="flex flex-row ml-auto">
-                <Link href="/signin">
                   <Button type="submit" radius="full" color="primary">
                     Sign up
                   </Button>
-                </Link>
               </div>
             </form>
           </div>
