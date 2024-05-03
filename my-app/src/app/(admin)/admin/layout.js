@@ -17,7 +17,7 @@ export default function AdminLayout({ children }) {
     <html lang="en">
       <body className={plusJakartaSans.className}>
         <NextUIProvider>
-          <div className="flex flex-row w-full">
+          <div className="flex flex-row">
             <div className="h-[100vh] overflow-y-auto bg-gray-100 p-4 flex flex-col gap-4">
               <div className="">
                 <img
