@@ -1,31 +1,30 @@
 'use client'
 
-import { FormEvent } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Input, Button } from '@nextui-org/react'
+import axios from 'axios'
 
 export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter()
 
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const formData = new FormData(event.currentTarget)
-    const email = formData.get('email')
-    const password = formData.get('password')
-
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+    const response = await axios.post('http://localhost/test/auth/login.php', {
+      username,
+      password,
     })
 
-    if (response.ok) {
-      router.push('/profile')
+    if (response.data.status === 'success') {
+      alert("Login successful");
+      router.push('/')
     } else {
-      // Handle errors
+      alert("Invalid username or password");
     }
   }
 
@@ -48,22 +47,20 @@ export default function LoginPage() {
             <p className="mt-4">to continue to The Amazing Record Store</p>
           </div>
           <div className="w-1/2 flex flex-col gap-4">
-            <form className="flex flex-col gap-4">
-              <Input type="email" label="Email or phone" />
-              <Input type="password" label="Password" />
-            </form>
-            <div className="flex flex-row-reverse gap-4 ml-auto">
-              <Link href="/">
-                <Button radius="full" color="primary" size="lg">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} label="Username" />
+              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" />
+              <div className="flex flex-row-reverse gap-4 ml-auto">
+                <Button type="submit" radius="full" color="primary" size="lg">
                   Sign in
                 </Button>
-              </Link>
-              <Link href="/signup">
-                <Button radius="full" variant='light' color="primary" size="lg">
-                  Create account
-                </Button>
-              </Link>
-            </div>
+                <Link href="/signup">
+                  <Button radius="full" variant='light' color="primary" size="lg">
+                    Create account
+                  </Button>
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
       </div>
