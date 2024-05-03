@@ -125,7 +125,7 @@ export default function UsersTable() {
     }
 
     return filteredUsers;
-  }, [users, filterValue]);
+  }, [users, filterValue, hasSearchFilter]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -188,6 +188,7 @@ export default function UsersTable() {
         return (
           <p>{user.username}</p>
         );
+=======
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
@@ -428,6 +429,27 @@ export default function UsersTable() {
       </Modal>
 
     </>
+=======
+          <Chip color="default" size="sm">Total {filteredItems.length} users</Chip>
+        </div>
+      }
+      topContentPlacement="outside"
+    >
+      <TableHeader columns={columns}>
+        {(column) => (
+          <TableColumn key={column.uid} align={column.uid === "actions" ? "center" : "start"}>
+            {column.name}
+          </TableColumn>
+        )}
+      </TableHeader>
+      <TableBody items={items}>
+        {(item) => (
+          <TableRow key={item.userID}>
+            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
   );
 
 }
