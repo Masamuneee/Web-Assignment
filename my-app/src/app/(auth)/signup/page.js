@@ -1,25 +1,33 @@
 'use client'
 
-import { FormEvent } from 'react'
+import React, { useState } from "react";
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Input, Button } from '@nextui-org/react'
+import axios from 'axios'
 
 export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fName, setFName] = useState('');
+  const [lName, setLName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [birthday, setBirthday] = useState('');
   const router = useRouter()
 
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const formData = new FormData(event.currentTarget)
-    const email = formData.get('email')
-    const password = formData.get('password')
-
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
+    const response = await axios.post('http://localhost/test/register.php', {
+      fName,
+      lName,
+      email,
+      phone,
+      birthday,
+      username,
+      password,
     })
 
     if (response.ok) {
@@ -48,26 +56,26 @@ export default function LoginPage() {
             <p className="mt-4">to continue to The Amazing Record Store</p>
           </div>
           <div className="w-1/2 flex flex-col gap-4">
-            <form className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className='flex flex-row gap-4'>
-                <Input type="text" name='fName' label="First name" />
-                <Input type="text" name='lName' label="Last name" />
+                <Input type="text" value={fName} onChange={(e) => setFName(e.target.value)} label="First name" />
+                <Input type="text" value={lName} onChange={(e) => setLName(e.target.value)} label="Last name" />
               </div>
               <div className='flex flex-row gap-4'>
-                <Input type="email" name='email' label="Email" />
-                <Input type="text" name='phone' label="Phone number" />
+                <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} label="Email" />
+                <Input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} label="Phone Number" />
               </div>
-              <Input type="date" name='username' label="Date of Birth" />
-              <Input type="text" name='username' label="Username" />
-              <Input type="password" name='password' label="Password" />
+              <Input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} label="Birthday" />
+              <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} label="Username" />
+              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" />
+              <div className="flex flex-row ml-auto">
+                <Link href="/signin">
+                  <Button type="submit" radius="full" color="primary">
+                    Sign up
+                  </Button>
+                </Link>
+              </div>
             </form>
-            <div className="flex flex-row ml-auto">
-              <Link href="/">
-                <Button radius="full" color="primary">
-                  Sign up
-                </Button>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
