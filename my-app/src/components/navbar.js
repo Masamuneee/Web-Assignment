@@ -8,17 +8,17 @@ export default function NavBar() {
   let isLoggedIn = true;
   return (
     <div className="w-full h-full py-4">
-      <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center">
+      <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center px-4">
         <div>
           <Link href="/">
             <img
               src="/logo/logo-fullAsset 1.svg"
               alt="logo"
-              className="h-[7rem] cursor-pointer"
+              className="h-[4rem] md:h-[7rem] cursor-pointer"
             />
           </Link>
         </div>
-        <div className="bg-inherit flex flex-row gap-3">
+        <div className="hidden bg-inherit md:flex flex-row gap-3">
           {ROUTES.navigationRoutes.map((route) => (
             <Link key={route} href={`/${route}`}>
               <Button
@@ -34,16 +34,15 @@ export default function NavBar() {
         </div>
         <div className="flex flex-row gap-8 items-center">
           <Dropdown>
-            <Badge content="99+" shape="circle" color="danger">
+            <Badge content="99+" size="sm" shape="circle" color="danger">
               <DropdownTrigger>
                 <Button
                   radius="full"
                   isIconOnly
                   aria-label="more than 99 notifications"
                   variant="light"
-                  size="lg"
                 >
-                  <i className="pi pi-shopping-cart text-2xl"></i>
+                  <i className="pi pi-shopping-cart text-xl md:text-2xl"></i>
                 </Button>
               </DropdownTrigger>
             </Badge>
