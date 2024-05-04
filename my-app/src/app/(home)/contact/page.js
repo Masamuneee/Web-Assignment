@@ -2,7 +2,7 @@ export default function Contact() {
   return (
     <div>
       <div className="max-w-screen-xl mx-auto">
-        <h1 className="text-5xl text-center font-bold">CONTACT US</h1>
+        <h1 className="home-section-header">CONTACT US</h1>
         <div className="mt-14 flex flex-col gap-14">
           <div className="grid grid-cols-[3fr_2fr] bg-gray-100 rounded-2xl overflow-hidden">
             <div className="bg-[url('https://recordhead.biz/wp-content/uploads/2021/05/1509134514.jpg')] bg-cover bg-center">
