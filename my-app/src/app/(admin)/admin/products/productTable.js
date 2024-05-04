@@ -2,29 +2,40 @@
 
 import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button, useDisclosure } from "@nextui-org/react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Checkbox, Link } from "@nextui-org/react";
-import { Textarea } from "@nextui-org/react";
-import { columns, articles, publishStatus } from "@/constants/articles";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
+import { products, statusColorMap } from "@/database/products";
+import { Textarea } from "@nextui-org/input";
 
-export default function ArticleTable() {
+const columns = [
+  { name: "ID", uid: "productID" },
+  { name: "NAME", uid: "name" },
+  { name: "ARTIST", uid: "artist" },
+  { name: "GENRE", uid: "genre" },
+  { name: "PRICE", uid: "price" },
+  { name: "IMAGE", uid: "image" },
+  { name: "STATUS", uid: "status"},
+  { name: "ACTIONS", uid: "actions" },
+];
+
+export default function ProductsTable() {
   const [filterValue, setFilterValue] = React.useState("");
   const hasSearchFilter = Boolean(filterValue);
   const filteredItems = React.useMemo(() => {
-    let filteredArticles = [...articles];
+    let filteredProducts = [...products];
 
     if (hasSearchFilter) {
-      filteredArticles = filteredArticles.filter((article) =>
-        article.title.toLowerCase().includes(filterValue.toLowerCase())
+      filteredProducts = filteredProducts.filter((product) =>
+        product.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
 
-    return filteredArticles;
-  }, [articles, filterValue, hasSearchFilter]);
+    return filteredProducts;
+  }, [products, filterValue, hasSearchFilter]);
 
   const [page, setPage] = React.useState(1);
-  const rowsPerPage = 10;
+  const rowsPerPage = 15;
 
-  const pages = Math.ceil(articles.length / rowsPerPage);
+  const pages = Math.ceil(products.length / rowsPerPage);
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -33,32 +44,10 @@ export default function ArticleTable() {
     return filteredItems.slice(start, end);
   }, [page, filteredItems]);
 
-  const renderCell = React.useCallback((article, columnKey) => {
-    const cellValue = article[columnKey];
+  const renderCell = React.useCallback((product, columnKey) => {
+    const cellValue = product[columnKey];
 
     switch (columnKey) {
-      case "articleID":
-        return (
-          <p>{article.articleID}</p>
-        );
-      case "title":
-        return (
-          <p>{article.title}</p>
-        );
-      case "category":
-        return (
-          <p>{article.category}</p>
-        );
-      case "datePublished":
-        return (
-          <p>{article.datePublished}</p>
-        );
-      case "status":
-        return (
-          <Chip className="capitalize" color={publishStatus[article.status]} size="sm" variant="flat">
-            {cellValue}
-          </Chip>
-        );
       case "actions":
         return (
           <div className="relative flex items-center gap-2">
@@ -79,6 +68,24 @@ export default function ArticleTable() {
             </Tooltip>
           </div>
         );
+      case "price":
+        return (
+          <p>${cellValue}</p>
+        );
+      case "image":
+        return (
+          <img
+            src={"/" + cellValue}
+            alt={product.name}
+            className="w-12 h-12 rounded-lg object-cover"
+          />
+        );
+      case "status":
+        return (
+          <Chip color={statusColorMap[cellValue]} size="sm">
+            {cellValue.toUpperCase()}
+          </Chip>
+        )
       default:
         return cellValue;
     }
@@ -99,6 +106,10 @@ export default function ArticleTable() {
   return (
     <Table
       isStriped
+      isHeaderSticky
+      classNames={{
+        wrapper: "!max-h-[calc(100vh-320px)]",
+      }}
       aria-label="Example table with custom cells"
       bottomContent={
         <div className="flex w-full justify-center">
@@ -139,30 +150,27 @@ export default function ArticleTable() {
               isOpen={isOpen}
               onOpenChange={onOpenChange}
               placement="top-center"
-              backdrop="blur"
-              size="5xl"
-              isDismissable={false}
-              isKeyboardDismissDisabled={true}
             >
               <ModalContent>
                 {(onClose) => (
                   <>
-                    <ModalHeader className="flex flex-col">New Post</ModalHeader>
+                    <ModalHeader className="flex flex-col">New Product</ModalHeader>
                     <ModalBody>
                       <form method="POST" className="flex flex-col gap-2">
+                        <Input type="text" name="name" label="Name" />
+                        <div className="flex flex-row gap-2">
+                          <Input type="text" name="artist" label="Artist" />
+                          <Input type="text" name="genre" label="Genre" />
+                        </div>
                         <Textarea
-                          variant="bordered"
-                          label="Title"
-                          labelPlacement="outside"
-                          placeholder="Enter post title"
+                          label="Description"
+                          placeholder="Enter product description"
                         />
-                        <Textarea
-                          minRows={1}
-                          variant="bordered"
-                          label="Content"
-                          labelPlacement="outside"
-                          placeholder="Enter post content"
-                        />
+                        <div className="flex flex-row gap-2">
+                          <Input type="number" name="price" label="Price" />
+                          <Input type="text" name="status" label="Status" />
+                        </div>
+                        <input id="file-upload" type="file" />
                       </form>
                     </ModalBody>
                     <ModalFooter>
@@ -178,7 +186,7 @@ export default function ArticleTable() {
               </ModalContent>
             </Modal>
           </div>
-          {/* <Chip color="default" size="sm">Total {articles.length} users</Chip> */}
+          <Chip color="default" size="sm">Total {filteredItems.length} products</Chip>
         </div>
       }
       topContentPlacement="outside"
@@ -192,7 +200,7 @@ export default function ArticleTable() {
       </TableHeader>
       <TableBody items={items}>
         {(item) => (
-          <TableRow key={item.articleID}>
+          <TableRow key={item.productID}>
             {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
           </TableRow>
         )}
