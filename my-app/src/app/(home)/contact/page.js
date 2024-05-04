@@ -1,11 +1,11 @@
 export default function Contact() {
   return (
     <div>
-      <div className="max-w-screen-xl mx-auto">
+      <div className="max-w-screen-xl mx-auto px-4">
         <h1 className="home-section-header">CONTACT US</h1>
         <div className="mt-14 flex flex-col gap-14">
-          <div className="grid grid-cols-[3fr_2fr] bg-gray-100 rounded-2xl overflow-hidden">
-            <div className="bg-[url('https://recordhead.biz/wp-content/uploads/2021/05/1509134514.jpg')] bg-cover bg-center">
+          <div className="flex flex-col md:grid grid-cols-[3fr_2fr] bg-gray-100 rounded-2xl overflow-hidden">
+            <div className="min-h-[15rem] bg-[url('https://recordhead.biz/wp-content/uploads/2021/05/1509134514.jpg')] bg-cover bg-center">
             </div>
             <div className="p-8">
               <h2 className="text-3xl font-bold">Contact Information</h2>
@@ -28,7 +28,7 @@ export default function Contact() {
           </div>
           <div>
             <h2 className="text-3xl font-bold">Store Leadership</h2>
-            <div className="grid grid-cols-3 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
               <div>
                 <h1 className="text-xl font-bold">Pham Quang Minh</h1>
                 <p>CEO</p>

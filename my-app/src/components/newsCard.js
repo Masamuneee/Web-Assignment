@@ -1,3 +1,5 @@
+'use client'
+
 import { Chip } from "@nextui-org/react";
 
 export default function NewsCard({ category, title, description, date, image }) {

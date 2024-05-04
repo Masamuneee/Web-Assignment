@@ -9,12 +9,15 @@ export default function NavBar() {
   return (
     <div className="w-full h-full py-4">
       <div className="max-w-screen-xl h-full mx-auto flex flex-row justify-between items-center px-4">
-        <div>
+        <div className="flex flex-row gap-4 items-center">
+          <Button isIconOnly variant="light" radius="full" className="block md:hidden">
+            <i className="pi pi-bars text-base"></i>
+          </Button>
           <Link href="/">
             <img
               src="/logo/logo-fullAsset 1.svg"
               alt="logo"
-              className="h-[4rem] md:h-[7rem] cursor-pointer"
+              className="h-[3.5rem] md:h-[7rem] cursor-pointer"
             />
           </Link>
         </div>

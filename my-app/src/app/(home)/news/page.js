@@ -1,3 +1,5 @@
+'use client'
+
 import NewsCard from "@/components/newsCard";
 import { news } from "@/database/news";
 
