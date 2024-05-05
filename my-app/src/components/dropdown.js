@@ -12,6 +12,7 @@ export default function DropDown() {
           <Avatar
             isBordered
             as="button"
+            size="sm"
             className="transition-transform"
             src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
             onMouseEnter={() => { setIsOpen(true) }}

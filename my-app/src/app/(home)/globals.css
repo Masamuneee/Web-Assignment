@@ -44,6 +44,10 @@ body {
   @apply text-5xl text-center font-bold mt-5 md:mt-0;
 }
 
+.side-nav-btn {
+  @apply h-[50px] flex flex-row items-center hover:bg-blue-200 rounded-full py-0.5 px-4;
+}
+
 .container {
   position: relative;
   overflow: hidden;
