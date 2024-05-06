@@ -1,14 +1,14 @@
 <?php
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Headers: *");  
 
 require_once '../config.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT id, firstname, lastname, email, phone, birthdate, username ,password, created_at , is_admin FROM users WHERE id = ?";
+    $sql = "SELECT username FROM users where id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -21,6 +21,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         echo json_encode($user);
     }
 
-    $stmt->close();
     $conn->close();
 }

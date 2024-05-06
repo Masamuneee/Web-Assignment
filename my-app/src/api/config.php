@@ -43,8 +43,29 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
     birthdate DATE,
     username VARCHAR(30) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_admin BOOLEAN DEFAULT FALSE
 )";
 
 mysqli_query($conn, $sql);
+
+# Create admin user if it does not exist
+$sql = "SELECT * FROM users WHERE username = 'admin'";
+$result = $conn->query($sql);
+
+if ($result->num_rows === 0) {
+    $firstname = 'Pham';
+    $lastname = 'Quang Minh';
+    $email = 'quangminh@gmail.com';
+    $phone = '0123456789';
+    $birthdate = '1999-01-01';
+    $username = 'admin';
+    $password = 'admin';
+    $is_admin = 1;
+    $sql = "INSERT INTO users (firstname, lastname, email, phone, birthdate, username, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssssssi", $firstname, $lastname, $email, $phone, $birthdate, $username, $password, $is_admin);
+    $stmt->execute();
+}
+
 ?>

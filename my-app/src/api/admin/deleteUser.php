@@ -8,6 +8,26 @@ require_once '../config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $id = $_GET['id'];
 
+    if (empty($id)) {
+        echo json_encode(['status' => 'error', 'message' => 'Please provide user id']);
+        return;
+    }
+
+    if (!is_numeric($id)) {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid user id']);
+        return;
+    }
+
+    if ($id < 1) {
+        echo json_encode(['status' => 'error', 'message' => 'Invalid user id']);
+        return;
+    }
+
+    if ($id == 1) {
+        echo json_encode(['status' => 'error', 'message' => 'You cannot delete the admin user']);
+        return;
+    }
+
     $sql = "SELECT id FROM users WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
