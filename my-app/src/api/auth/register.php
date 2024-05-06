@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = $data['lName'];
     $email = $data['email'];
     $phone = $data['phone'];
-    $birthdate = $data['birthday'];
+    $birthdate = $data['birthdate'];
     $username = $data['username'];
     $password = $data['password'];
 
@@ -55,9 +55,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return;
     }
 
+    # Check if the username already exists
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-
-    $sql = "INSERT INTO users (firstname, lastname, email, phone, birthdate, username, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    if ($user) {
+        echo json_encode(['status' => 'error', 'message' => 'Username already exists']);
+        return;
+    }
+    
+    # Insert user into the database
+    $sql = "INSERT INTO users (firstname, lastname, email, phone, birthdate, username, password, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, 0)";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssssss", $firstname, $lastname, $email, $phone, $birthdate, $username, $password);

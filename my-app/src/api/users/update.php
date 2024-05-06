@@ -8,20 +8,17 @@ require_once '../config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $birthdate = $data['birthdate'];
-    $email = $data['email'];
-    $firstname = $data['fName'];
     $id = $data['id'];
-    $lastname = $data['lName'];
-    $password = $data['password'];
-    $phone = $data['phone'];
     $username = $data['username'];
-    $is_admin = $data['is_admin'];
+    $firstname = $data['fName'];
+    $lastname = $data['lName'];
+    $email = $data['email'];
+    $phone = $data['phone'];
+    $birthdate = $data['birthdate'];
 
-    $sql = "UPDATE users SET birthdate = ?, email = ?, firstname = ?, lastname = ?, password = ?, phone = ?, username = ?, is_admin = ? WHERE id = ?";
-
+    $sql = "UPDATE users SET username = ?, firstname = ?, lastname = ?, email = ?, phone = ?, birthdate = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssssii", $birthdate, $email, $firstname, $lastname, $password, $phone, $username, $is_admin, $id);
+    $stmt->bind_param("ssssssi", $username, $firstname, $lastname, $email, $phone, $birthdate, $id);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
@@ -29,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['status' => 'error', 'message' => 'Failed to update user']);
     }
 
-    $stmt->close();
-    $conn->close();
 }
 
 ?>

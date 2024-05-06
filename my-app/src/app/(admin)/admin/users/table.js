@@ -3,6 +3,7 @@
 import React from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button, useDisclosure } from "@nextui-org/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
+import {Checkbox} from "@nextui-org/checkbox";
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
 import { columns } from "@/constants/userDatabase";
@@ -24,6 +25,7 @@ export default function UsersTable() {
   const [phone, setPhone] = React.useState("");
   const [birthdate, setBirthdate] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [is_admin, setIsAdmin] = React.useState(false);
   const router = useRouter();
 
   // User data
@@ -66,6 +68,7 @@ export default function UsersTable() {
       birthdate,
       username,
       password,
+      is_admin: is_admin ? 1 : 0,
     };
 
     const response = await axios.post('http://localhost/test/admin/update.php', userData);
@@ -85,6 +88,7 @@ export default function UsersTable() {
             birthdate,
             username,
             password,
+            is_admin: is_admin ? 1 : 0,
           };
         }
         return user;
@@ -201,7 +205,6 @@ export default function UsersTable() {
               <span
                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
                 onClick={() => {
-                  console.log(user);
                   setUserId(user.id);
                   setFName(user.firstname);
                   setLName(user.lastname);
@@ -210,6 +213,7 @@ export default function UsersTable() {
                   setBirthdate(user.birthdate);
                   setUsername(user.username);
                   setPassword('');
+                  setIsAdmin(user.is_admin);
                   setEditModalOpen(true);
                 }}
               >
@@ -360,6 +364,7 @@ export default function UsersTable() {
                 <p>Username: {selectedUserDetails.username}</p>
                 <p>Password: {selectedUserDetails.password}</p>
                 <p>Date Registered: {new Date(selectedUserDetails.created_at).toLocaleDateString()}</p>
+                <p>Is Admin: {selectedUserDetails.is_admin ? 'Yes' : 'No'}</p>
               </div>
             ) : (
               <p>Loading...</p>
@@ -370,7 +375,7 @@ export default function UsersTable() {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Modal isOpen={editModalOpen} onOpenChange={setEditModalOpen}>
+      <Modal isOpen={editModalOpen} backdrop="blur" onOpenChange={setEditModalOpen}>
         <ModalContent>
           <ModalHeader>Edit User</ModalHeader>
           <form onSubmit={handleEditSubmit}>
@@ -384,6 +389,7 @@ export default function UsersTable() {
               <Input type="date" name="birthdate" label="Date of Birth" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} />
               <Input type="text" name="username" label="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
               <Input type="password" name="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Checkbox checked={is_admin} onChange={(e) => setIsAdmin(e.target.checked)}>Is Admin</Checkbox>
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="flat" onPress={() => setEditModalOpen(false)}>

@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "@nextui-org/react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { Chip } from "@nextui-org/react";
+import { checkAuthUser } from "@/utils/auth";
 
 const rows = [
   {
@@ -109,6 +110,8 @@ const columns = [
 
 export default function Detail() {
   const [quantity, setQuantity] = React.useState(0);
+
+  checkAuthUser();
 
   function increment() {
     setQuantity(quantity + 1);
