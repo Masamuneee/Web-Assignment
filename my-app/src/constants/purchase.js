@@ -14,7 +14,7 @@ const purchases = [
     description: "CD",
     pricePerProduct: 10.99,
     quantity: 3,
-    status: "processing",
+    status: "processing", 
   },
   {
     producID: 2150002,
@@ -22,7 +22,7 @@ const purchases = [
     description: "CD",
     pricePerProduct: 11.99,
     quantity: 2,
-    status: "shipping",
+    status: "shipping"
   },
   {
     producID: 2150003,

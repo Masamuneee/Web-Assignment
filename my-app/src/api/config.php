@@ -47,4 +47,17 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 )";
 
 mysqli_query($conn, $sql);
+
+// Create product table
+$sql = "CREATE TABLE IF NOT EXISTS products (
+    productID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    artist VARCHAR(30) NOT NULL,
+    genre VARCHAR(30) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    price FLOAT(6) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+)"; 
+mysqli_query($conn, $sql);
 ?>

@@ -1,10 +1,12 @@
 'use client'
 
-import React from "react";
+import React from 'react';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Chip, Tooltip, Pagination, Input, Button, useDisclosure } from "@nextui-org/react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
 import { products, statusColorMap } from "@/database/products";
 import { Textarea } from "@nextui-org/input";
+import axios from 'axios';
+
 
 const columns = [
   { name: "ID", uid: "productID" },
@@ -18,6 +20,78 @@ const columns = [
 ];
 
 export default function ProductsTable() {
+  const [name, setproductName] = React.useState("");
+  const [artist, setArtist] = React.useState("");
+  const [genre, setGenre] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [price, setPrice] = React.useState("");
+  const [image, setImage] = React.useState("");
+  const [status, setStatus] = React.useState("");
+
+  const [products, setProducts] = React.useState([])
+
+  const [editModalOpen, setEditModalOpen] = React.useState(false); 
+  async function handleEditSubmit(event) {
+    event.preventDefault();
+
+    const productData = {
+      id: productID,
+      name,
+      artist,
+      genre,
+      description,
+      price,
+      status,
+      image
+    };
+
+    const response = await axios.post('http://localhost/test/admin/updateProduct.php', productData);
+
+    if (response.data.status === 'success') {
+      alert('Update successful');
+      setEditModalOpen(false);  // Close the modal
+      // Refresh the user data
+      const updatedProducts = products.map(product => {
+        if (product.id === productID) {
+          return {
+            ...product,
+            name,
+            artist,
+            genre,
+            price,
+            image,
+            status
+          };
+        }
+        return product;
+      });
+      setProducts(updatedProducts);
+    } else {
+      alert(response.data.message);
+    }
+  }
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const response = await axios.post('http://localhost/test/productDtb/productDB.php', {
+        name,
+        artist,
+        genre,
+        description,
+        price,
+        image,
+        status,    
+    });
+
+    if (response.data.status === 'success') {
+      alert('Updated');
+    } else {
+      alert(response.data.message);
+    }
+  }
+
+
   const [filterValue, setFilterValue] = React.useState("");
   const hasSearchFilter = Boolean(filterValue);
   const filteredItems = React.useMemo(() => {
@@ -155,32 +229,32 @@ export default function ProductsTable() {
                 {(onClose) => (
                   <>
                     <ModalHeader className="flex flex-col">New Product</ModalHeader>
+                      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                     <ModalBody>
-                      <form method="POST" className="flex flex-col gap-2">
-                        <Input type="text" name="name" label="Name" />
+                      <Input type="text" name="name" label="Name" value={name} onChange={(e) => setproductName(e.target.value)} />
                         <div className="flex flex-row gap-2">
-                          <Input type="text" name="artist" label="Artist" />
-                          <Input type="text" name="genre" label="Genre" />
+                          <Input type="text" name="artist" label="Artist" value={artist} onChange={(e) => setArtist(e.target.value)} />
+                          <Input type="text" name="genre" label="Genre" value={genre} onChange={(e) => setGenre(e.target.value)} />
                         </div>
                         <Textarea
                           label="Description"
                           placeholder="Enter product description"
                         />
                         <div className="flex flex-row gap-2">
-                          <Input type="number" name="price" label="Price" />
-                          <Input type="text" name="status" label="Status" />
+                          <Input type="number" name="price" label="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
+                          <Input type="text" name="status" label="Status" value={status} onChange={(e) => setStatus(e.target.value)}/>
                         </div>
                         <input id="file-upload" type="file" />
-                      </form>
                     </ModalBody>
-                    <ModalFooter>
+                        <ModalFooter>
                       <Button color="danger" variant="flat" onPress={onClose}>
                         Cancel
                       </Button>
-                      <Button color="primary" onPress={onClose}>
+                      <Button type="submit" color="primary" onPress={onClose}>
                         Add
                       </Button>
                     </ModalFooter>
+                    </form>
                   </>
                 )}
               </ModalContent>
