@@ -2,6 +2,7 @@ import { ROUTES } from "@/constants/navigationRoutes";
 import { Badge, Button, Dropdown, DropdownTrigger, DropdownSection, DropdownItem, DropdownMenu } from "@nextui-org/react";
 import DropDown from "@/components/dropdown";
 import Link from "next/link";
+import { parseCookies } from "nookies";
 
 
 export default function NavBar() {
@@ -11,7 +12,8 @@ export default function NavBar() {
   const closeSideNavBar = async () => {
     document.getElementById("SideNavBar").style.width = "0";
   }
-  let isLoggedIn = true;
+  const cookies = parseCookies();
+  const isLoggedIn = cookies.token ? true : false;
   const theRestRoutes = ROUTES.navRoutesWithIcons.slice(1);
   return (
     <>

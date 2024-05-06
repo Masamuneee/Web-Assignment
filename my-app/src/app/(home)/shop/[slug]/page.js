@@ -7,6 +7,7 @@ import { Chip } from "@nextui-org/react";
 
 import { products, statusColorMap } from "@/database/products";
 import { createSlug } from "@/utils/createSlug";
+import { checkAuthUser } from "@/utils/auth";
 
 const columns = [
   {
@@ -24,6 +25,8 @@ export default function DetailPage({ params }) {
   const product = products.find((product) => createSlug(product.image) === Slug);
   const [quantity, setQuantity] = React.useState(0);
 
+  checkAuthUser();
+  
   function increment() {
     setQuantity(quantity + 1);
   }
@@ -34,11 +37,11 @@ export default function DetailPage({ params }) {
 
   return (
     <div className="bg-white w-full mt-12">
-      <div className="flex flex-col md:flex-row gap-5 md:gap-12 max-w-screen-xl mx-auto px-4">
-        <div className="w-full md:w-1/2 mx-auto overflow-hidden">
-          <img src={"/" + product.image} alt="hero" className="w-full rounded-2xl" />
+      <div className="flex flex-row gap-12 max-w-screen-xl mx-auto">
+        <div className="w-1/2">
+          <img src={"/" + product.image} alt="hero" className="w-full" />
         </div>
-        <div className="w-full md:w-1/2 flex flex-col gap-5">
+        <div className="w-1/2 flex flex-col gap-5">
           <div className="flex flex-col gap-3">
             <h1 className="text-4xl font-black">{product.name}</h1>
             <div className="flex gap-2">
