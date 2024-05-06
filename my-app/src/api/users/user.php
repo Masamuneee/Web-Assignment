@@ -8,7 +8,7 @@ require_once '../config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT username FROM users where id = ?";
+    $sql = "SELECT id, username FROM users where id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
