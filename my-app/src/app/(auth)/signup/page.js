@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Input, Button } from '@nextui-org/react'
 import axios from 'axios'
 
@@ -14,7 +13,7 @@ export default function LoginPage() {
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
   const [phone, setPhone] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [birthdate, setBirthdate] = useState('');
   const router = useRouter()
 
   async function handleSubmit(event) {
@@ -25,7 +24,7 @@ export default function LoginPage() {
       lName,
       email,
       phone,
-      birthday,
+      birthdate,
       username,
       password,
     })
@@ -68,7 +67,7 @@ export default function LoginPage() {
                 <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} label="Email" />
                 <Input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} label="Phone Number" />
               </div>
-              <Input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} label="Birthday" />
+              <Input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} label="Birthdate" />
               <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} label="Username" />
               <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" />
               <div className="flex flex-row ml-auto">

@@ -1,8 +1,11 @@
+'use client'
 
 import { purchases } from "@/constants/purchase"
 import { users } from "@/constants/userDatabase"
+import { checkAuth } from "@/utils/auth"
 
 export default function AdminHomepage() {
+  checkAuth();
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-3 gap-4">

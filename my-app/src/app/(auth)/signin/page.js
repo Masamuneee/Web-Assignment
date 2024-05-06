@@ -21,6 +21,7 @@ export default function LoginPage() {
     })
 
     if (response.data.status === 'success') {
+      document.cookie = `token=${response.data.token}; path=/`
       alert("Login successful");
       router.push('/')
     } else {
