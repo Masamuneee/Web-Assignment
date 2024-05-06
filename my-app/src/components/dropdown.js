@@ -13,7 +13,7 @@ export default function DropDown() {
   const id = jwt.decode(token).user_id;
 
   useEffect(() => {
-    async function fetchData($id) {
+    async function fetchData() {
       const response = await axios.get('http://localhost/test/users/user.php?id=' + id);
       setUser(response.data.username);
     }
