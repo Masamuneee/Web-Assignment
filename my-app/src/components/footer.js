@@ -4,9 +4,9 @@ import { Input } from "@nextui-org/react";
 
 export default function Footer() {
   return (
-    <div className="w-full mt-20 px-4">
-      <div className="w-[98%] mx-auto h-[2px] bg-gray-200"></div>
-      <div className="max-w-screen-xl mx-auto py-20 flex flex-col gap-20">
+    <div className="w-full mt-20">
+      <div className="w-[98%] mx-auto h-[2px] bg-gray-200 px-4"></div>
+      <div className="max-w-screen-xl mx-auto py-20 flex flex-col gap-20 px-4">
         <div className="flex flex-col md:flex-row gap-10">
           <div className="w-full md:w-1/2 flex flex-col items-start gap-5">
             <img
