@@ -46,5 +46,17 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 
+# Create the COMMENTS table if it does not exist
+$sqlCOMMENT = "CREATE TABLE IF NOT EXISTS comments (
+    commentID INT(6) UNSIGNED AUTO_INCREMENT,
+    comment VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    userID INT(6) UNSIGNED,
+
+    PRIMARY KEY (commentID),
+    FOREIGN KEY (userID) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+)";
+
 mysqli_query($conn, $sql);
+mysqli_query($conn, $sqlCOMMENT);
 ?>
