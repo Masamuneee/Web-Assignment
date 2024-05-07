@@ -55,6 +55,8 @@ export default function ProductsTable() {
   async function handleEditSubmit(event) {
     event.preventDefault();
 
+    setId(DetailsProducts.productID);
+
     const data = {
       id: id,
       name,
@@ -68,7 +70,7 @@ export default function ProductsTable() {
 
     const response = await axios.post('http://localhost/test/admin/products-edit.php', data);
 
-    if (response.data === "success") {
+    if (response.data.status === "success") {
       alert("Product edited successfully");
       setEditModalOpen(false);
 
@@ -178,15 +180,22 @@ export default function ProductsTable() {
                   setArtist(product.artist);
                   setGenre(product.genre);
                   setPrice(product.price);
+                  setDescription(product.description);
                   setImage(product.image);
                   setStatus(product.status);
+                  setEditModalOpen(true);
                 }}
               >
                 <i className="pi pi-pen-to-square"></i>
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Delete">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+              <span className="text-lg text-danger cursor-pointer active:opacity-50"
+                onClick={() => {
+                  setProductToDelete(product);
+                  setDeleteModalOpen(true);
+                }}
+              >
                 <i className="pi pi-trash"></i>
               </span>
             </Tooltip>
@@ -309,7 +318,7 @@ export default function ProductsTable() {
               </Modal>
             </div>
             <Chip color="default" size="sm">Total {filteredItems.length} products</Chip>
-          </div >
+          </div>
         }
         topContentPlacement="outside"
       >
@@ -327,7 +336,7 @@ export default function ProductsTable() {
             </TableRow>
           )}
         </TableBody>
-      </Table >
+      </Table>
       <Modal isOpen={detailModalOpen} onOpenChange={setDetailModalOpen}>
         <ModalContent>
           <ModalHeader>Product Details</ModalHeader>
@@ -411,7 +420,7 @@ export default function ProductsTable() {
             <Button color="danger" variant="flat" onPress={() => setDeleteModalOpen(false)}>
               Cancel
             </Button>
-            <Button color="primary" onPress={handleDelete}>
+            <Button color="danger" onPress={handleDelete}>
               Delete
             </Button>
           </ModalFooter>
