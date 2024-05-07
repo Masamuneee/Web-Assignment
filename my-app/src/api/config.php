@@ -1,4 +1,4 @@
-<?php 
+<?php
 function loadEnvironmentVariables($filePath)
 {
     if (!file_exists($filePath)) {
