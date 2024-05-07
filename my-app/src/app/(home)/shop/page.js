@@ -1,10 +1,24 @@
 'use client'
 
 import ShopCard from "@/components/shopCard";
-import { products } from "@/database/products";
 import { createSlug } from "@/utils/createSlug";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function Shop() {
+
+  const [products, setProducts] = useState([])
+
+  async function getProducts() {
+    const response = await axios.get('http://localhost/test/admin/products.php')
+    setProducts(response.data)
+  }
+
+  useEffect(() => {
+    getProducts()
+  }, [])
+
+
   return (
     <div>
       <div className="max-w-screen-xl mx-auto px-4">
