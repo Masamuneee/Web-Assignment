@@ -8,9 +8,9 @@ export function checkAuth() {
     window.location.href = '/signin';
     return;
   }
-  const cookie = document.cookie.split(';').find(cookie => cookie.startsWith('token=')).split('=')[1];
+  const cookie = parseCookies().token;
   const decoded_jwt = jwt.decode(cookie);
-  if (decoded_jwt.role !== 'admin' && typeof window !== 'undefined') {
+  if (decoded_jwt && decoded_jwt.role !== 'admin' && typeof window !== 'undefined') {
     alert("You are not authorized to view this page");
     window.location.href = '/';
     return;
