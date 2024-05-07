@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@nextui-org/react";
 import axios from "axios";
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 import jwt from "jsonwebtoken";
 
 export default function DropDown() {
@@ -11,6 +11,11 @@ export default function DropDown() {
   const [user, setUser] = useState('');
   const token = parseCookies().token;
   const id = jwt.decode(token).user_id;
+
+  const handleLogout = () => {
+    destroyCookie(null, 'token');
+    window.location.href = '/';
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -44,7 +49,7 @@ export default function DropDown() {
           <DropdownItem key="purchase" href="/purchase/history">
             My purchase
           </DropdownItem>
-          <DropdownItem key="logout" color="danger">
+          <DropdownItem key="logout" color="danger" onClick={handleLogout}>
             Log out
           </DropdownItem>
         </DropdownMenu>
