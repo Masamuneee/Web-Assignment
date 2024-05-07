@@ -37,11 +37,11 @@ export default function DetailPage({ params }) {
 
   return (
     <div className="bg-white w-full mt-12">
-      <div className="flex flex-row gap-12 max-w-screen-xl mx-auto">
-        <div className="w-1/2">
-          <img src={"/" + product.image} alt="hero" className="w-full" />
+      <div className="flex flex-col md:flex-row gap-6 md:gap-12 max-w-screen-xl mx-auto px-4">
+        <div className="w-full md:w-1/2">
+          <img src={"/" + product.image} alt="hero" className="w-full rounded-xl" />
         </div>
-        <div className="w-1/2 flex flex-col gap-5">
+        <div className="w-full md:w-1/2 flex flex-col gap-5">
           <div className="flex flex-col gap-3">
             <h1 className="text-4xl font-black">{product.name}</h1>
             <div className="flex gap-2">
