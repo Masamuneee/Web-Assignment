@@ -2,15 +2,64 @@
 
 import React from "react";
 import { news } from "@/database/news";
-import { Chip, Avatar, Textarea, Button } from "@nextui-org/react";
+import { Chip, Avatar, Textarea, Button, user } from "@nextui-org/react";
+import { useRouter } from 'next/navigation';
 import slugify from 'slugify';
 import axios from "axios";
+import { parseCookies } from "nookies";
+import jwt from "jsonwebtoken";
 
 export default function NewsDetailPage({ params }) {
+  const notLoggedIn = !parseCookies().token && typeof window !== 'undefined';
+
   const Slug = params.slug;
   const newsItem = news.find((news) => slugify(news.title, { remove: /[*+~.()'"!:@]/g }).toLowerCase() === Slug);
 
-  const [value, setValue] = React.useState("");
+  const [userID, setUserID] = React.useState(null);
+  const token = parseCookies().token;
+  const id = jwt.decode(token).user_id;
+  console.log(token, id, userID)
+  React.useEffect(() => {
+    async function fetchUserID() {
+      const response = await axios.get('http://localhost/test/users/user.php?id=' + id);
+      setUserID((userID) => userID = response.data.id);
+    }
+
+    fetchUserID();
+  }, []);
+
+  const [comment, setComment] = React.useState("");
+  const [postLink, setPostLink] = React.useState("");
+
+  const router = useRouter();
+
+  const [comments, setComments] = React.useState([])
+  React.useEffect(() => {
+    async function fetchComments() {
+      const response = await axios.get('http://localhost/test/comments/comments.php');
+      setComments(response.data);
+    }
+
+    fetchComments();
+  }, []);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const response = await axios.post('http://localhost/test/comments/create.php', {
+      userID,
+      comment,
+      postLink,
+    });
+
+    if (response.data.status === 'success') {
+      alert('Comment has been posted successfully');
+      router.push(`/news/${Slug}`);
+    }
+    else {
+      alert(response.data.message);
+    }
+  }
 
   return (
     <div>
@@ -51,12 +100,15 @@ export default function NewsDetailPage({ params }) {
 
         <div className="comment-section w-[87.5%] sm:max-w-[75%] md:max-w-[50%] mx-auto flex flex-col gap-4">
           <h1 className="font-bold text-xl">Comments</h1>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Textarea
               label="Comment"
               placeholder="Enter your comment"
-              value={value}
-              onValueChange={setValue}
+              value={comment}
+              onChange={
+                (e) => (
+                  setComment(e.target.value), setUserID(userID), setPostLink(`${Slug}`)
+                )}
             />
             <div className="mt-2 flex flex-row gap-2 justify-end">
               <Button
@@ -64,14 +116,16 @@ export default function NewsDetailPage({ params }) {
                 color="default"
                 radius="full"
                 variant="light"
+                onPress={(e) => setComment("")}
               >
                 Cancel
               </Button>
               <Button
-                isDisabled={value === "" ? true : false}
+                isDisabled={(comment === "" && !notLoggedIn) ? true : false}
                 type="submit"
                 radius="full"
-                color={value === "" ? "default" : "primary"}
+                color={(comment === "" && !notLoggedIn) ? "default" : "primary"}
+                onPress={handleSubmit}
               >
                 Comment
               </Button>
@@ -79,33 +133,35 @@ export default function NewsDetailPage({ params }) {
           </form>
 
           <div className="flex flex-col gap-8">
-            <div className="flex flex-row gap-4">
-              <div>
-                <Avatar size="lg" isBordered src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="font-bold text-base">John Doe</p>
-                <p className="text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <div className="flex flex-row gap-4">
-                  <div className="flex flex-row items-center">
-                    <Button size="sm" isIconOnly radius="full" variant="light" color="primary">
-                      <i className="pi pi-thumbs-up text-base"></i>
-                    </Button>
-                    <p className="text-xs">1111</p>
+            {
+              comments.map((comment) => (
+                <div key={comment.commentID} className="flex flex-row gap-4">
+                  <div>
+                    <Avatar size="lg" isBordered src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
                   </div>
-                  <div className="flex flex-row items-center">
-                    <Button size="sm" isIconOnly radius="full" variant="light" color="danger">
-                      <i className="pi pi-thumbs-down text-base"></i>
-                    </Button>
-                    <p className="text-xs">1111</p>
+                  <div className="flex flex-col gap-2">
+                    <p className="font-bold text-base">{comment.userID}</p>
+                    <p className="text-sm">
+                      {comment.comment}
+                    </p>
+                    <div className="flex flex-row gap-4">
+                      <div className="flex flex-row items-center">
+                        <Button size="sm" isIconOnly radius="full" variant="light" color="primary">
+                          <i className="pi pi-thumbs-up text-base"></i>
+                        </Button>
+                        <p className="text-xs">1111</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <Button size="sm" isIconOnly radius="full" variant="light" color="danger">
+                          <i className="pi pi-thumbs-down text-base"></i>
+                        </Button>
+                        <p className="text-xs">1111</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              ))
+            }
           </div>
 
         </div>
